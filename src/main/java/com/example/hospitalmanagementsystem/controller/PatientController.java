@@ -23,7 +23,7 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> getPatientById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Patient> getPatientById(@PathVariable Long id) {
         var patient = patientService.getPatientById(id);
         return ResponseEntity.ok().body(patient);
     }
@@ -35,14 +35,14 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Patient> updatePatient(@PathVariable(value = "id") Long id,
-                                                 @Valid @RequestBody Patient patientDetails) {
+    public ResponseEntity<Patient> updatePatient(@PathVariable Long id,
+            @Valid @RequestBody Patient patientDetails) {
         var updatedPatient = patientService.updatePatient(id, patientDetails);
         return ResponseEntity.ok(updatedPatient);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePatient(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Void> deletePatient(@PathVariable Long id) {
         patientService.deletePatient(id);
         return ResponseEntity.noContent().build();
     }

@@ -23,9 +23,9 @@ public class AppointmentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Appointment> getAppointmentById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Appointment> getAppointmentById(@PathVariable Long id) {
         var appointment = appointmentService.getAppointmentById(id);
-        return ResponseEntity.ok().body(appointment);
+        return ResponseEntity.ok(appointment);
     }
 
     @PostMapping
@@ -37,7 +37,7 @@ public class AppointmentController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAppointment(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Void> deleteAppointment(@PathVariable Long id) {
         appointmentService.deleteAppointment(id);
         return ResponseEntity.noContent().build();
     }

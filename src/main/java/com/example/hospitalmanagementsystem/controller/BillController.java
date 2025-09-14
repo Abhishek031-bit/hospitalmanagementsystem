@@ -23,28 +23,28 @@ public class BillController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Bill> getBillById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Bill> getBillById(@PathVariable Long id) {
         var bill = billService.getBillById(id);
         return ResponseEntity.ok().body(bill);
     }
 
     @PostMapping
     public ResponseEntity<Bill> createBill(@Valid @RequestBody Bill bill,
-                                           @RequestParam Long patientId,
-                                           @RequestParam Long appointmentId) {
+            @RequestParam Long patientId,
+            @RequestParam Long appointmentId) {
         var createdBill = billService.createBill(bill, patientId, appointmentId);
         return new ResponseEntity<>(createdBill, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Bill> updateBill(@PathVariable(value = "id") Long id,
-                                           @Valid @RequestBody Bill billDetails) {
+    public ResponseEntity<Bill> updateBill(@PathVariable Long id,
+            @Valid @RequestBody Bill billDetails) {
         var updatedBill = billService.updateBill(id, billDetails);
         return ResponseEntity.ok(updatedBill);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBill(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Void> deleteBill(@PathVariable Long id) {
         billService.deleteBill(id);
         return ResponseEntity.noContent().build();
     }
